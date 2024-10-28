@@ -1,3 +1,4 @@
+// pages/login.js
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 
@@ -8,7 +9,6 @@ export default function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Aqui você chama sua API de autenticação
     const res = await fetch('/api/auth', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -16,9 +16,9 @@ export default function Login() {
     });
 
     if (res.ok) {
-      router.push('/dashboard');
+      router.push('/dashboard'); // Redireciona para o dashboard após login
     } else {
-      alert('Login failed');
+      alert('Login falhou!'); // Exibe mensagem de erro
     }
   };
 
@@ -31,12 +31,14 @@ export default function Login() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Email"
+          required
         />
         <input
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Senha"
+          required
         />
         <button type="submit">Entrar</button>
       </form>
